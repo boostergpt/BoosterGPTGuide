@@ -724,7 +724,7 @@ elif page == "📊 Prompt 4: Create Visual":
     <div class="prompt-title">**Prompt to Copy:**</div>
     <div class="prompt-block">
 
-Create a function called create_trend_visuals() which ingests the output of preprocess_sales_trend(). This function should:
+• Create a function called create_trend_visuals() which ingests the output of preprocess_sales_trend(). This function should:
 
     • Produce a line graph in the 'Trend Analytics Tab'
     • Display the total units sold and total revenue on the same graph.
