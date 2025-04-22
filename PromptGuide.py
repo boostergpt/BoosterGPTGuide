@@ -130,11 +130,15 @@ prompt_context = """
 
 Thoroughly analyze the streamlit application and its ingested metadata below and help me with the edits I require:
 
+
 {Paste Code Here} 
+
 
 {Paste .info Here}
 
+
 Make these edits below, but do not modify, drop or add anything else other than what I ask for here: 
+
 
 {Paste Prompt Here}"""
 
