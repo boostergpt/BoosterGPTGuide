@@ -10,38 +10,125 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better styling
+# More refined professional CSS styling
 st.markdown("""
 <style>
-    .main {
-        padding: 2rem;
+    /* Base styling */
+    body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
     }
-    .highlight {
-        background-color: #f6f6f6;
-        border-radius: 5px;
-        padding: 15px;
-        border-left: 3px solid #4e8cff;
+    
+    /* Header styling */
+    h1 {
+        color: #1E3A8A;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.7rem;
+        border-bottom: 1px solid #e0e0e0;
+        font-size: 2.2rem;
+        font-weight: 600;
     }
-    .command-box {
-        background-color: #1e1e1e;
-        color: white;
-        border-radius: 5px;
-        padding: 10px;
-        font-family: monospace;
+    
+    h2 {
+        color: #2E4A9A;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+        font-weight: 500;
     }
-    h1, h2, h3, h4 {
+    
+    /* General text styling */
+    p {
+        font-size: 1.05rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+    
+    /* Command box styling */
+    .prompt-block {
+        background-color: #f0f4f8;
+        border-left: 4px solid #1a56db;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 4px;
+        font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+        white-space: pre-wrap;
+        font-size: 0.95rem;
+        color: #1a365d;
+        line-height: 1.6;
+    }
+    
+    /* Prompt title styling */
+    .prompt-title {
+        font-weight: 600;
+        color: #1a56db;
+        margin-bottom: 0.8rem;
+        font-size: 1.1rem;
+    }
+    
+    /* Commandment styling */
+    .commandment {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: #f8fafc;
+        border-radius: 6px;
+        border-left: 3px solid #3b82f6;
+    }
+    
+    .commandment-title {
+        font-weight: 600;
+        color: #1E3A8A;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Section styling */
+    .section-title {
+        font-weight: 600;
+        color: #2E4A9A;
+        font-size: 1.2rem;
         margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Lists */
+    ul, ol {
+        margin-bottom: 1.5rem;
+    }
+    
+    li {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Code blocks */
+    pre {
+        background-color: #f1f5f9;
+        padding: 1rem;
+        border-radius: 4px;
+        font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+        overflow-x: auto;
+    }
+    
+    /* Expander styling */
+    .streamlit-expanderHeader {
+        font-weight: 500;
+        color: #2E4A9A;
+    }
+    
+    /* Warning styling */
+    .warning {
+        background-color: #fff7ed;
+        border-left: 4px solid #f97316;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        border-radius: 4px;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# Define a function to display code blocks
-def display_code_block(text):
-    st.markdown(f"""
-    <div class="highlight">
-        <pre>{text}</pre>
-    </div>
-    """, unsafe_allow_html=True)
+# Consistent prompt context for all expanders
+prompt_context = """Thoroughly analyze the streamlit application and its ingested metadata below and help me with the edits I require:
+{Paste Code Here} {Paste .info Here}
+Make these edits below, but do not modify, drop or add anything else other than what I ask for here: {Paste Prompt Here}"""
 
 # Define the initial dashboard code
 initial_dashboard_code = '''import pandas as pd
@@ -226,15 +313,20 @@ def main():
 if __name__ == "__main__":
     main()'''
 
-# Create sidebar navigation
-st.sidebar.title("🌈 Vibe Coding")
-st.sidebar.markdown("A guide to efficient AI-powered coding")
+# Create professional sidebar
+st.sidebar.markdown("""
+<div style="text-align: center; padding-bottom: 1.5rem;">
+    <h1 style="color: #1E3A8A; font-size: 1.8rem; margin-bottom: 0.5rem;">🌈 Vibe Coding</h1>
+    <p style="color: #64748b; font-size: 1rem; font-weight: 500;">AI-Powered Development</p>
+    <hr style="margin: 1.2rem 0; border-color: #e5e7eb;">
+</div>
+""", unsafe_allow_html=True)
 
-# Create the sidebar navigation menu
+# Create the sidebar navigation menu with improved styling
 page = st.sidebar.radio(
-    "Navigate:",
+    "Navigation",
     [
-        "🔯 10 Commandments",
+        "🤖 10 Commandments of Vibe Coding",
         "🚀 Getting Started",
         "💻 Initial Dashboard",
         "📋 Prompt 1: Data Explorer",
@@ -248,44 +340,82 @@ page = st.sidebar.radio(
 )
 
 # Main content display based on sidebar selection
-if page == "🔯 10 Commandments":
+if page == "🤖 10 Commandments of Vibe Coding":
     st.title("The 10 Commandments of Vibe Coding")
-    st.markdown("Follow these principles to make the most of your AI-powered coding experience.")
+    
+    st.markdown("""
+    <p style="font-size: 1.1rem; color: #4b5563; margin-bottom: 2rem; font-style: italic;">
+    Essential principles to enhance your AI-powered development workflow
+    </p>
+    """, unsafe_allow_html=True)
     
     commandments = [
-        "**Focus on structure, not syntax** – Don't focus on the code, focus on what the code is trying to do.",
-        "**Keep it simple** – Everything from your prompt to application structure should be concise. Complexity breeds inefficiency.",
-        "**Create a game plan** – Lay out your application functions before creating your tool. This way you know how to organize your prompt and what functions depend on each other.",
-        "**Build incrementally** – Multiple vague instructions are the crux of vibe coding, make sure that you are building step by step.",
-        "**Clean your data** – Instruct the LLM to drop and impute data based on your business understanding. Null, 0, and erroneous values must be addressed before building your app.",
-        "**Build table functions before visual functions** – Create a good foundation for your visuals by first building tables that compute the values you want to present.",
-        "**Be aware of dependencies** – Don't build a black box! Look at your code structure and get a firm understanding of how each function affects the other.",
-        "**Refactor for efficiency** – Your code base will grow legs, if it gets too slow don't forget to refactor.",
-        "**Prompt to learn** – There are no silly questions, especially when you're asking a machine.",
-        "**Take risks** – Learn the way machines do: by exploring every avenue possible. Even the silly ones!"
+        "**Focus on structure, not syntax** – Direct your attention to what the code accomplishes rather than its specific syntax details.",
+        "**Keep it simple** – Maintain conciseness in everything from prompts to application structure. Complexity invariably leads to inefficiency.",
+        "**Create a game plan** – Outline your application functions before building your tool. This strategic approach helps organize prompts and clarify function dependencies.",
+        "**Build incrementally** – Employ multiple specific instructions as the foundation of vibe coding, ensuring step-by-step development progress.",
+        "**Clean your data** – Guide the AI to drop and impute data based on business understanding. Address null values, zeros, and erroneous data before building your application.",
+        "**Build table functions before visual functions** – Establish a solid foundation for visualizations by first creating tables that compute your target values.",
+        "**Be aware of dependencies** – Avoid creating a black box! Study your code structure to thoroughly understand how functions interact with each other.",
+        "**Refactor for efficiency** – As your codebase expands, remember to refactor when performance begins to degrade.",
+        "**Prompt to learn** – There are no trivial questions, especially when consulting an AI system.",
+        "**Take risks** – Learn as machines do: by exploring all possibilities, even those that seem unconventional."
     ]
     
+    # Display commandments with improved styling - MODIFIED SECTION
     for i, commandment in enumerate(commandments, 1):
-        st.markdown(f"{i}. {commandment}")
+        # Extract the commandment text from the string (removing the bold markers)
+        commandment_text = commandment.replace("**", "")
+        # Find the first dash or hyphen to split the title from explanation
+        if " – " in commandment_text:
+            title, explanation = commandment_text.split(" – ", 1)
+        elif " - " in commandment_text:
+            title, explanation = commandment_text.split(" - ", 1)
+        else:
+            # If no dash is found, use the whole text as title
+            title = commandment_text
+            explanation = ""
+        
+        # Format with number and title as header, explanation as separate paragraph
+        st.markdown(f"""
+        <div class="commandment">
+            <div class="commandment-title">{i}. {title}</div>
+            <p style="margin-bottom: 0;">{explanation}</p>
+        </div>
+        """, unsafe_allow_html=True)
     
-    # Add intro section at the top of the first page
-    st.sidebar.markdown("---")
-    st.sidebar.header("How to Run This App")
-    st.sidebar.code("streamlit run vibe_coding_app.py", language="bash")
+    # Add run instructions to sidebar with improved styling
+    st.sidebar.markdown("""
+    <div style="background-color: #f8fafc; padding: 1rem; border-radius: 6px; margin-top: 2rem;">
+        <p style="font-weight: 600; color: #1E3A8A; margin-bottom: 0.5rem;">Quick Start</p>
+        <div style="background-color: #1e293b; color: #e2e8f0; border-radius: 4px; padding: 0.8rem; font-family: monospace; font-size: 0.9rem;">
+        streamlit run vibe_coding_app.py
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("Happy Vibe Coding! 🌈✨")
+    st.sidebar.markdown("""
+    <div style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+        <p style="color: #3b82f6; font-weight: 500;">Happy Vibe Coding! 🌈✨</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif page == "🚀 Getting Started":
     st.title("Getting Started with Vibe Coding")
     
-    st.header("How to Navigate Through Folders & Run Streamlit Applications")
+    st.markdown("""
+    This guide will help you set up your environment and begin your Vibe Coding journey with the right tools and configuration.
+    """)
     
-    st.markdown("### 1. Open your terminal:")
-    st.markdown("- On a Mac: Go to the search bar on the top right of your screen and type 'Terminal'")
-    st.markdown("- On a PC: Press the Windows button and search for 'Command Prompt'")
+    st.markdown("""
+    <div class="section-title">Terminal Navigation</div>
+    """, unsafe_allow_html=True)
     
-    st.markdown("### 2. Check the Contents of your Directory:")
+    st.markdown("**1. Open your terminal:**")
+    st.markdown("• **Mac:** Go to the search bar in the top right of your screen and type 'Terminal'")
+    st.markdown("• **Windows:** Press the Windows button and search for 'Command Prompt'")
+    
+    st.markdown("**2. Check the Contents of your Directory:**")
     code_mac = "ls"
     code_pc = "dir"
     
@@ -294,315 +424,433 @@ elif page == "🚀 Getting Started":
         st.markdown("**Mac:**")
         st.code(code_mac, language="bash")
     with col2:
-        st.markdown("**PC:**")
+        st.markdown("**Windows:**")
         st.code(code_pc, language="bash")
     
-    st.markdown("### 3. Navigate into your project folder:")
+    st.markdown("**3. Navigate into your project folder:**")
     st.code("cd Documents", language="bash")
     st.code("cd VibeBoosterGPT", language="bash")
     
-    st.markdown("### 4. Check the contents of your project folder:")
+    st.markdown("**4. Check the contents of your project folder:**")
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("**Mac:**")
         st.code(code_mac, language="bash")
     with col2:
-        st.markdown("**PC:**")
+        st.markdown("**Windows:**")
         st.code(code_pc, language="bash")
     
-    st.markdown("### 5. Run your Streamlit application:")
+    st.markdown("**5. Run your Streamlit application:**")
     st.code("streamlit run tutorial_streamlit.py", language="bash")
     
-    st.markdown("### 6. If a 'Module' or 'Python Library is Missing':")
+    st.markdown("**6. If a 'Module' or 'Python Library is Missing':**")
     st.code("pip install module_name", language="bash")
     
-    st.header("Opening Jupyter Notebooks & Spyder")
-    st.markdown("### To Open Jupyter Notebooks:")
+    st.markdown("""
+    <div class="section-title">Development Environments</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("**Jupyter Notebooks:**")
     st.code("jupyter notebook", language="bash")
     
-    st.markdown("### To Open Spyder:")
+    st.markdown("**Spyder IDE:**")
     st.code("spyder", language="bash")
+    
+    # Add professional tips section
+    st.markdown("""
+    <div class="section-title">Professional Development Practices</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("• **Use virtual environments** for each project to manage dependencies effectively")
+    st.markdown("• **Keep your code modular** to facilitate maintenance and collaboration")
+    st.markdown("• **Document your code** thoroughly with docstrings and comments")
+    st.markdown("• **Commit your changes regularly** with descriptive messages if using version control")
 
 elif page == "💻 Initial Dashboard":
     st.title("Initial Dashboard Setup")
     
     st.markdown("""
-    Before we start building out our application with prompts, let's set up the initial dashboard. 
-    This will serve as our foundation for all the enhancements we'll make through vibe coding.
+    Before enhancing our application with advanced features, we'll establish a solid foundation dashboard. This will serve as the backbone for all subsequent improvements using Vibe Coding techniques.
     """)
     
-    st.header("Step 1: Open Spyder")
     st.markdown("""
-    First, let's open Spyder, a scientific Python development environment that's great for data analytics work:
+    <div class="section-title">Step 1: Launch Your Development Environment</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    First, let's open Spyder, a scientific Python development environment optimized for data analytics work:
     
     1. Open your terminal
-    2. Type the following command:
+    2. Execute the following command:
     """)
     st.code("spyder", language="bash")
     
-    st.header("Step 2: Copy the Initial Dashboard Code")
     st.markdown("""
-    Next, copy the code below and paste it into the Spyder editor:
+    <div class="section-title">Step 2: Implement the Initial Dashboard Code</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    Copy the code below and paste it into the Spyder editor:
     """)
     
     with st.expander("Initial Dashboard Code", expanded=False):
         st.code(initial_dashboard_code, language="python")
     
-    st.header("Step 3: Save the File")
     st.markdown("""
-    Save the file with a meaningful name:
+    <div class="section-title">Step 3: Save Your Project File</div>
+    """, unsafe_allow_html=True)
     
-    1. In Spyder, go to File > Save As
-    2. Navigate to your project folder
+    st.markdown("""
+    Save with a Descriptive Filename:
+    
+    1. In Spyder, navigate to File > Save As
+    2. Browse to your project directory
     3. Save the file as `dashboard.py`
     """)
     
-    st.header("Step 4: Run the Dashboard")
     st.markdown("""
-    Now let's run the dashboard:
+    <div class="section-title">Step 4: Execute Your Dashboard</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    Now let's launch the dashboard application:
     
     1. Open your terminal
     2. Navigate to your project directory:
     """)
     st.code("cd path/to/your/project", language="bash")
     st.markdown("""
-    3. Run the Streamlit app:
+    3. Launch the Streamlit application:
     """)
     st.code("streamlit run dashboard.py", language="bash")
     
     st.markdown("""
-    Congratulations! You now have a working dashboard that you can enhance using vibe coding techniques.
-    Your dashboard already includes:
-    
-    - A file uploader for CSV data
-    - A raw data viewer
-    - Basic filtering functionality
-    
-    In the following prompts, we'll incrementally improve this dashboard with more advanced features.
-    """)
+    <div style="background-color: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 1rem; margin-top: 2rem; border-radius: 4px;">
+        <p style="font-weight: 600; color: #0369a1; margin-bottom: 0.5rem;">Initial Dashboard Complete</p>
+        <p style="margin-bottom: 0.5rem;">You now have a functional dashboard foundation that includes:</p>
+        <ul style="margin-bottom: 0; padding-left: 1.5rem;">
+            <li>A CSV file uploader with error handling</li>
+            <li>An interactive data viewer with expandable sections</li>
+            <li>Comprehensive filtering functionality for multiple data types</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif page == "📋 Prompt 1: Data Explorer":
     st.title("Prompt 1: Data Explorer & App Foundation")
     
     with st.expander("PROMPT CONTEXT", expanded=False):
-        st.markdown("""
-        If you are starting a prompt from scratch, or choosing to start a new session with your chosen LLM, it is often necessary to provide the AI with context. This context should:
-        1. Ask the LLM to analyze the code to understand its purpose,
-        2. Provide the edit requested.
-        3. Limit the LLM's interpretation
-        """)
-        
-        st.subheader("Base Template for Prompt:")
-        base_prompt = """Thoroughly analyze the streamlit application and its ingested metadata below and help me with the edits I require:
-
-{Paste Code Here}
-{Paste .info Here}
-
-Make these edits below, but do not modify, drop or add anything else other than what I ask for here:
-{Paste Prompt Here}
-"""
-        display_code_block(base_prompt)
+        st.code(prompt_context, language="markdown")
     
     st.markdown("""
-    Your initial prompt should allow you to explore the data about to be analyzed. By creating a file explorer you will be able to:
-    - Get a feel of the data set, its contents and potential utility.
-    - Detect anomalies to be cleaned such as 0s, blanks, null & erroneous values
-    - Build your application in a modular fashion, allowing you to understand each step of the application's pipeline, conserving LLM compute and preventing a black box application from being engineered.
-    
-    Well created applications always follow the structure below:
-    1. Import Libraries
-    2. Load Data (either through upload or connecting to an internal file)
-    3. Provide a means for data exploration & Filtration
-    4. Prepare tables and calculations necessary for visuals and interactivity
-    5. Combine and present all analytics in a main() function
-    
-    In our case a starter dashboard has already been created, which can act as your foundation for any project you choose to pursue.
+    Your initial prompt should establish robust data exploration capabilities. By implementing an effective file explorer, you'll be able to:
     """)
     
-    prompt1 = """Create a Streamlit analytics dashboard built in a modular fashion where additional functionality can be added one by one. Only create the functions and tables I request for below, do not create anything else.
+    st.markdown("""
+    • **Understand your dataset** – Develop intuitive familiarity with content and analytical potential
+    • **Identify data issues** – Spot anomalies like null values, zeros, blanks, and outliers
+    • **Build modular code** – Create transparent, well-organized application structure
+    """)
+    
+    st.markdown("""
+    <div class="section-title">Professional Application Architecture</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    Well-designed analytics applications consistently follow this structural pattern:
+    
+    1. Import necessary libraries and dependencies
+    2. Implement data loading mechanisms (file upload or database connection)
+    3. Create data exploration and filtering capabilities
+    4. Develop tables and calculations to support visualizations
+    5. Integrate all components in a main() function with error handling
+    """)
+    
+    st.markdown("""
+    We've already created a starter dashboard that serves as your foundation. The following prompt will help you enhance it with robust data exploration capabilities.
+    """)
+    
+    st.markdown("""
+    <div class="prompt-title">**Prompt to Copy:**</div>
+    <div class="prompt-block">
+    
+Create a Streamlit analytics dashboard built in a modular fashion where additional functionality can be added one by one. Only create the functions and tables I request for below, do not create anything else.
 
-Build the following modular functions:
-1. Import pandas, numpy, Streamlit, Altair and all relevant libraries
-2. load_data(): Use st.file_uploader() and pd.read_csv() to load a CSV. Return a DataFrame.
-3. file_explorer(data): Display the raw uploaded table with st.dataframe().
-4. filter_values(data): Ability to filter by value and explore the data set.
-5. Create a main() function which is also wrapped by the debugger that calls the above functions in sequence and ends the app.
 
-Here is the .info() of the data which this app will be analyzing:
-# Paste df.info() output here
-"""
-    display_code_block(prompt1)
+• Build the following modular functions:
+  
+  
+  
+        • Import pandas, numpy, Streamlit, Altair and all relevant libraries
+        
+        • load_data(): Use st.file_uploader() and pd.read_csv() to load a CSV. Return a DataFrame.
+        
+        • file_explorer(data): Display the raw uploaded table with st.dataframe().
+        
+        • filter_values(data): Ability to filter by value and explore the data set.
+        
+        • Create a main() function which is also wrapped by the debugger that calls the above functions in sequence and ends the app.
+
+• Return the entire runnable code base in one script.
+
+• Here is the .info() of the data which this app will be analyzing:
+
+{Paste df.info() output here}</div>
+    """, unsafe_allow_html=True)
 
 elif page == "📋 Prompt 2: Data Cleaning":
     st.title("Prompt 2: Data Cleaning & Imputation")
     
     with st.expander("PROMPT CONTEXT", expanded=False):
-        st.markdown("""
-        Before running this prompt, make sure you've already created the initial dashboard using Prompt 1. This prompt will add data cleaning functionality to your existing application.
-        
-        Paste your current code along with the data .info() before adding the prompt below.
-        """)
+        st.code(prompt_context, language="markdown")
     
     st.markdown("""
-    Initial exploration should allow you to systematically explore your file and search for erroneous, null, blank and 0 values. At this juncture, analysts often look to create data cleaning pipelines which strategically convert these values into usable data. There are generally 3 forms of transformation analysts use:
-    
-    - **Statistical Imputation** – the replacement of erroneous values in the data set with the mean, median, min, max for that array. This method is often used on outliers and values likely to have been inputted incorrectly. Python will often use z scores and standard deviation to detect these outliers so be sure to be prescriptive when identifying values to impute.
-    
-    - **Drop** – the complete deletion of the row that erroneous value exists in. This method is used when the value is either too disruptive for analysis or was missing and so crucial that the entire row is void.
-    
-    - **Custom Conversion** – targeting specific values that were likely universally inputted wrong and must then be strategically edited throughout the entire data set. This can involve converting zipcodes from long form to short form, turning unique identifiers in string format to int '123456' to 123456.
-    
-    - **Datetime Conversion** – Turning long format date time values into python ready datetime objects which can be used for trend analysis.
-    
-    Clean_data() functions often require column by column instructions in order to ensure that data is addressed accordingly. This avoids python dropping entire rows when unnecessary or assuming that some transformations are valid for multiple columns when they are specifically done only for one.
+    After initial exploration, you'll need to systematically address data quality issues. Professional data scientists employ strategic transformation methods to convert problematic values into usable data.
     """)
     
-    prompt2 = """Create a clean_data() function which acts as an automatic pipeline that cleans each column as requested below. Do not create any extra functionality, cleaning, imputation, conversion or deletion outside of what is described:
+    st.markdown("""
+    <div class="section-title">Data Cleaning Approaches</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    • **Statistical Imputation** – Replace erroneous or missing values with statistically derived alternatives (mean, median, min, max)
+    
+    • **Strategic Row Removal** – Eliminate rows containing problematic values when they're too disruptive for analysis
+    
+    • **Custom Conversion** – Transform specific systematic errors (standardizing formats, normalizing values)
+    
+    • **Datetime Standardization** – Convert various datetime formats into Python-native objects for temporal analysis
+    """)
+    
+    st.markdown("""
+    Column-specific instructions are essential when implementing data cleaning to ensure appropriate treatment and prevent overzealous transformations.
+    """)
+    
+    st.markdown("""
+    <div class="prompt-title">**Prompt to Copy:**</div>
+    <div class="prompt-block">
 
-1. Total Data Set: Drop all Null Values and Blanks
-2. Price: Impute all outliers with the mean of that model, make & year
-3. Do not impute, edit, add or drop any values outside of those instructed above.
+Create a clean_data() function which acts as an automatic pipeline that cleans each column as requested below. Do not create any extra functionality, cleaning, imputation, conversion or deletion outside of what is described:
 
-Create a data cleaned log in the side bar which shows how many values were dropped, imputed, converted etc. during the process.
-"""
-    display_code_block(prompt2)
+    • Total Data Set: Drop all Null Values and Blanks
+
+    • Price: Impute all outliers with the mean of that model, make & year
+
+    • Do not impute, edit, add or drop any values outside of those instructed above.
+
+    • Create a data cleaned log in the side bar which shows how many values were dropped, imputed, converted etc. during the process.
+
+Return the entire runnable code base in one script.</div>
+    """, unsafe_allow_html=True)
 
 elif page == "📊 Prompt 3: Preprocess Visual":
     st.title("Prompt 3: Preprocess for First Visual (Trend)")
     
     with st.expander("PROMPT CONTEXT", expanded=False):
-        st.markdown("""
-        Make sure you've already implemented the data cleaning functionality from Prompt 2. This prompt will add preprocessing for visualizations to your application.
-        
-        Paste your current code before adding the prompt below.
-        """)
+        st.code(prompt_context, language="markdown")
     
     st.markdown("""
-    Before displaying visuals such as graphs, you must first create the table on which that visual will be created. In a streamlit pipeline this is called a 'Preprocess' or 'Pre-calculation' function. These functions automatically group data into the segments necessary to conduct analysis and then create custom columns for novel calculations unique to that analysis. Novel calculations can include rolling averages, price/sqft and even forecasted growth.
-    
-    It is advisable to segment your application into 'tabs' to keep your analysis organized. Both the preprocessed data and the graphs should appear in that tab.
+    Before creating visual representations of your data, you must first prepare the underlying dataset structure. In professional Streamlit applications, this preparation is handled by 'preprocessing' or 'pre-calculation' functions.
     """)
     
-    prompt3 = """1. Create a separate tab called 'Trend Analytics'
-2. Create a function called preprocess_sales_trend(data) which should:
-   o Create a trend analytics table with the following columns:
-     ['Date', 'Dealership', 'Make', 'Model', 'Units Sold', 'Revenue'].
-   o Units Sold should be the total amount of models sold in that period.
-   o Revenue should be the total amount of USD generated from that model in that period. Compute revenue using price of the units sold.
-   o Create a rolling 12-month average trend for Units Sold and Revenue.
-   o Allow me to filter this table by date, state and dealership.
-   o Output this table with filters in the 'Trend Analytics' tab.
-3. Do not create any other functionality outside of the above. Keep the code simple.
-"""
-    display_code_block(prompt3)
+    st.markdown("""
+    • **Aggregate data** into meaningful analytical segments
+    • **Generate calculated columns** specific to your analytical needs
+    • **Compute advanced metrics** like rolling averages and growth rates
+    • **Structure data** in formats optimized for visualization libraries
+    """)
+    
+    st.markdown("""
+    <div class="section-title">Best Practice</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    Organize your application into logical tabs to maintain clear separation between different analytical perspectives. Each tab should contain both the preprocessed data tables and their corresponding visualizations.
+    """)
+    
+    st.markdown("""
+    <div class="prompt-title">**Prompt to Copy:**</div>
+    <div class="prompt-block">
+
+Create a separate tab called 'Trend Analytics' to conduct trend analysis on the uploaded data.
+
+• Create a function called preprocess_sales_trend(data) which should:
+
+    1. Create a trend analytics table with the following columns:
+    ['Date', 'Dealership', 'Make', 'Model', 'Units Sold', 'Revenue']
+    2. Units Sold should be the total amount of models sold in that period.
+    3. Revenue should be the total amount of USD generated from that model in that period. Compute revenue using price of the units sold.
+    4. Create a rolling 12-month average trend for Units Sold and Revenue.
+    
+• Allow me to filter this table by date, state and dealership.
+
+• Output this table with filters in the 'Trend Analytics' tab.
+
+• Do not create any other functionality outside of the above. Keep the code simple.
+
+
+• Return the entire runnable code base in one script.</div>
+    """, unsafe_allow_html=True)
 
 elif page == "📊 Prompt 4: Create Visual":
     st.title("Prompt 4: Create a Visual – Sales Trend Over Time")
     
     with st.expander("PROMPT CONTEXT", expanded=False):
-        st.markdown("""
-        Make sure you've already implemented the preprocessing functionality from Prompt 3. This prompt will add visualization to your application.
-        
-        Paste your current code before adding the prompt below.
-        """)
+        st.code(prompt_context, language="markdown")
     
     st.markdown("""
-    It is important to always separate the function which processes your data and the function which displays its visuals. This separation allows for your application to continue being modular, well organized and easily edited by an LLM.
-    
-    In this prompt we will specifically draw from the output of preprocess_sales_trend(data). It is important to be clear about what you want to see, how big you want that visual to be and the ultimate analytical goal of that graphic. This is true for line graphs, geospatial maps and any other form of visual representation in streamlit.
+    In professional-grade applications, data processing and visualization are kept strictly separate. This separation enhances modularity, maintainability, and adaptability to changing requirements.
     """)
     
-    prompt4 = """1. Create a function called create_trend_visuals() which ingests the output of preprocess_sales_trend(). This function should:
-   o Produce a line graph in the 'Trend Analytics Tab'
-   o Display the total units sold and total revenue on the same graph.
-   o Have a separate axis for units sold in order to manage the scale difference between revenue and units.
-   o Display the rolling 12 month trend for both units and revenue
-   o Position the graph directly below the filters and above the output table of preprocess_sales_trend()
-2. Do not create any functionality or visuals outside of what has been requested above. Keep the code simple.
-"""
-    display_code_block(prompt4)
+    st.markdown("""
+    <div class="section-title">Visualization Best Practices</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    When specifying visualization requirements, be explicit about:
+    
+    • **Visual type and dimensions** – Specify chart type, size, and positioning
+    • **Data representation** – Clarify what data elements should be displayed and how
+    • **Analytical purpose** – Articulate the insights the visualization should reveal
+    • **Interactive elements** – Define what user interactions should be supported
+    • **Layout considerations** – Describe how the visual relates to other UI elements
+    """)
+    
+    st.markdown("""
+    This prompt will build directly on the output from `preprocess_sales_trend(data)` created in the previous step, transforming that tabular data into compelling visual insights.
+    """)
+    
+    st.markdown("""
+    <div class="prompt-title">**Prompt to Copy:**</div>
+    <div class="prompt-block">
+
+Create a function called create_trend_visuals() which ingests the output of preprocess_sales_trend(). This function should:
+
+    • Produce a line graph in the 'Trend Analytics Tab'
+    • Display the total units sold and total revenue on the same graph.
+    • Have a separate axis for units sold in order to manage the scale difference between revenue and units.
+    • Display the rolling 12 month trend for both units and revenue
+    • Position the graph directly below the filters and above the output table of preprocess_sales_trend()
+
+• Do not create any functionality or visuals outside of what has been requested above. Keep the code simple.
+
+• Return the entire runnable code base in one script.</div>
+    """, unsafe_allow_html=True)
 
 elif page == "📊 Prompt 5: Refactoring":
-    st.title("Prompt 5: Refactoring Long Code")
+    st.title("Prompt 5: Refactoring for Performance Optimization")
     
     with st.expander("PROMPT CONTEXT", expanded=False):
-        st.markdown("""
-        Make sure you've already implemented all the previous functionality. This prompt will help optimize your application.
-        
-        Paste your current code before adding the prompt below.
-        """)
+        st.code(prompt_context, language="markdown")
     
     st.markdown("""
-    At this juncture, you may notice that the application is running slower than expected and that the lines of code being written are surpassing 300 or even 500 lines. This is normal in the iterative engineering process and is often a point at which a Vibe Engineer will need to begin making their code more efficient. The process of optimizing your code for performance, organization and sustainability is called refactoring. In this next prompt we will be doing the following:
-    
-    - **Refactoring for efficiency** - Reorganizing code structure and algorithms to achieve the same results with fewer computational resources and less time.
-    
-    - **Replacing for loops with vectorized operations** - Converting sequential item-by-item processing to bulk operations that process entire data arrays simultaneously, significantly increasing processing speed.
-    
-    - **Implementing st.cache_data and st.cache_resource** - Adding special Streamlit functions that store results of expensive calculations, preventing the need to recalculate them every time the app refreshes or when inputs haven't changed.
-    
-    - **Removing redundant operations** - Eliminating duplicate or unnecessary calculations and processes that consume computing resources without providing additional value to the final output.
+    As your application evolves and expands, you may notice performance degradation and increasing code complexity. This is a natural part of the development process and signals the need for strategic optimization.
     """)
     
-    prompt5 = """Conduct the following edits on the streamlit application I pasted without losing any of the existing functionality, computations or graphic representations:
-• Refactor the code base so it becomes more efficient.
-• When practical, replace For Loops with Vectorized Operations.
-• Implement st.cache_data and st.cache_resource
-• Remove redundant operations.
-"""
-    display_code_block(prompt5)
+    st.markdown("""
+    <div class="section-title">Performance Optimization Techniques</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    • **Efficiency Refactoring** – Reorganize code structure and algorithms to achieve identical results with fewer resources
+    
+    • **Vectorized Operations** – Replace sequential processing with parallelized operations that handle entire data arrays simultaneously
+    
+    • **Streamlit Caching** – Implement specialized decorators to store results of expensive calculations
+    
+    • **Redundancy Elimination** – Remove duplicate calculations and unnecessary operations
+    """)
+    
+    st.markdown("""
+    <div class="prompt-title">**Prompt to Copy:**</div>
+    <div class="prompt-block">
+    
+Conduct the following edits on the streamlit application I pasted without losing any of the existing functionality, computations or graphic representations:
+
+        Refactor the code base so it becomes more efficient.
+
+        • When practical, replace For Loops with Vectorized Operations.
+
+        • Implement st.cache_data and st.cache_resource
+
+        • Remove redundant operations.
+
+• Return the entire runnable code base in one script.</div>
+    """, unsafe_allow_html=True)
 
 elif page == "🤖 Bonus 1: AI Analytics":
     st.title("Bonus Prompt 1: Creating Generative AI Agent Analytics")
     
     with st.expander("PROMPT CONTEXT", expanded=False):
-        st.markdown("""
-        Make sure you've already implemented and optimized your application using the previous prompts. This prompt will add AI analytics capabilities.
-        
-        Paste your current code before adding the prompt below.
-        """)
+        st.code(prompt_context, language="markdown")
     
     st.markdown("""
-    Generative AI Agents are one of the most powerful new tools to come from AI. These agents are capable of marrying internal analytical insights with the broader knowledge base of large language models. These agents rely on 3 key factors:
-    
-    - **Macro Analysis** – Like real world analysts, Generative AI agents often need to start from the macro perspective. This allows agents to look at individual data points in the context of their environment and index their performance.
-    
-    - **Micro Analysis** – Once a general context is provided, specific data points relevant to the insights desired must then be created. In the case of our demo file, this would be the current revenue generated of the specific make and model along with its 12 month rolling average.
-    
-    - **Secure API Key** – Security is paramount in Vibe Coding, and Generative AI Agents are not exempt. In order to ensure that all the context uploaded into our LLM is done so safely we must use approved API Keys.
-    
-    Our first prompt will generate 3 Macro Analytics tables that will be used as context in conjunction with our micro context. This will empower the user to ask questions such as 'Are sales for Toyota Camrys likely to reduce next year?'
+    Generative AI Agents represent the cutting edge of analytical technology, combining internal data insights with the broad knowledge base of large language models.
     """)
     
-    bonus_prompt1 = """Create 3 macro analytics tables that will be used as the basis for insight generation for a generative AI agent. These three tables are:
-1. 12 month sales trend by Make
-2. 12 month sales trend by Model
-3. 12 month sales trend by State
-"""
-    display_code_block(bonus_prompt1)
+    st.markdown("""
+    <div class="section-title">AI Agent Components</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    • **Macro Analysis** – Comprehensive understanding of the overall context, enabling evaluation of data points within their broader environment
+    
+    • **Micro Analysis** – Granular data specific to the target inquiry, such as revenue metrics for specific models with historical comparisons
+    
+    • **Secure Implementation** – Proper API key management and secure data handling protocols to protect sensitive information
+    """)
+    
+    st.markdown("""
+    This prompt will create three comprehensive macro analytics tables that will provide essential context for our AI agent, enabling sophisticated predictive insights.
+    """)
+    
+    st.markdown("""
+    <div class="prompt-title">**Prompt to Copy:**</div>
+    <div class="prompt-block">
+
+•  Create these three 3 macro analytics tables that will be used as the basis for insight generation for a generative AI agent: 
+
+    • 12 month sales trend by Make
+    • 12 month sales trend by Model
+    • 12 month sales trend by Year
+
+• Return the entire runnable code base in one script.</div>
+    """, unsafe_allow_html=True)
 
 elif page == "🤖 Bonus 2: AI Agent":
     st.title("Bonus Prompt 2: Creating the Generative AI Agent")
     
     with st.expander("PROMPT CONTEXT", expanded=False):
-        st.markdown("""
-        Make sure you've already implemented the macro analytics tables from Bonus Prompt 1. This prompt will create the actual AI agent.
-        
-        Paste your current code before adding the prompt below.
-        """)
+        st.code(prompt_context, language="markdown")
     
     st.markdown("""
-    Once Micro and Macro analysis are available to be used as context, we can then create a general framework for our Generative AI agent. For the purposes of our exercise we can keep it simple, but you will generally want to include the following:
-    
-    1. The insight you are looking to ascertain.
-    2. The Macro and Micro Analysis to be used as context.
-    3. The API Key to be used.
+    With both macro and micro analytical foundations in place, we can now develop a sophisticated AI agent framework. Professional implementations typically incorporate:
     """)
     
-    bonus_prompt2 = """Create a generative AI agent capable of predicting whether sales are likely to increase or decrease for a make, model, year combination. Use the current revenue's position in comparison to its 12 month trend for micro context and the 12 month sales trend by make, model and year as macro context.
+    st.markdown("""
+    1. **Clearly defined analytical objectives** – Specific insights the agent should provide
+    2. **Comprehensive contextual data** – Both macro trends and granular details
+    3. **Secure API integration** – Properly implemented authentication and data handling
+    4. **Interactive query interface** – User-friendly mechanism for posing questions
+    5. **Insight visualization** – Clear presentation of the agent's analytical conclusions
+    """)
+    
+    st.markdown("""
+    <div class="warning">
+        <p style="font-weight: 600; color: #c2410c; margin-bottom: 0.5rem;">Security Note</p>
+        <p style="margin-bottom: 0;">For demonstration purposes, this example includes a placeholder API key. In production, always implement secure key management practices such as environment variables or secret management services.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="prompt-title">**Prompt to Copy:**</div>
+    <div class="prompt-block">
 
-Use OpenAI's API Infrastructure using this key:
-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
-"""
-    display_code_block(bonus_prompt2)
-    st.warning("⚠️ Note: For security reasons, never share real API keys in your applications or prompts. The key shown here is for demonstration purposes only and should be replaced with your own secure key.")
+•  Create a generative AI agent capable of predicting whether sales are likely to increase or decrease for a make, model, year combination. Use the current revenue's position in comparison to its 12 month trend for micro context and the 12 month sales trend by make, model and year as macro context.
+
+•  Use OpenAI's API Infrastructure using this key:
+
+    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
+
+•  Return the entire runnable code base in one script.</div>
+    """, unsafe_allow_html=True)
