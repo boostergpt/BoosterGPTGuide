@@ -765,7 +765,7 @@ elif page == "📊 Prompt 5: Refactoring":
     <div class="prompt-title">**Prompt to Copy:**</div>
     <div class="prompt-block">
     
-Conduct the following edits on the streamlit application I pasted without losing any of the existing functionality, computations or graphic representations:
+• Conduct the following edits on the streamlit application I pasted without losing any of the existing functionality, computations or graphic representations:
 
         Refactor the code base so it becomes more efficient.
 
