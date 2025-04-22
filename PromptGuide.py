@@ -672,7 +672,7 @@ elif page == "📊 Prompt 3: Preprocess Visual":
     <div class="prompt-title">**Prompt to Copy:**</div>
     <div class="prompt-block">
 
-Create a separate tab called 'Trend Analytics' to conduct trend analysis on the uploaded data.
+• Create a separate tab called 'Trend Analytics' to conduct trend analysis on the uploaded data.
 
 • Create a function called preprocess_sales_trend(data) which should:
 
