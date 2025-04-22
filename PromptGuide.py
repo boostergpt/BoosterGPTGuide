@@ -630,7 +630,7 @@ elif page == "📋 Prompt 2: Data Cleaning":
     <div class="prompt-title">**Prompt to Copy:**</div>
     <div class="prompt-block">
 
-Create a clean_data() function which acts as an automatic pipeline that cleans each column as requested below. Do not create any extra functionality, cleaning, imputation, conversion or deletion outside of what is described:
+• Create a clean_data() function which acts as an automatic pipeline that cleans each column as requested below. Do not create any extra functionality, cleaning, imputation, conversion or deletion outside of what is described:
 
     • Total Data Set: Drop all Null Values and Blanks
 
@@ -640,7 +640,7 @@ Create a clean_data() function which acts as an automatic pipeline that cleans e
 
     • Create a data cleaned log in the side bar which shows how many values were dropped, imputed, converted etc. during the process.
 
-Return the entire runnable code base in one script.</div>
+• Return the entire runnable code base in one script.</div>
     """, unsafe_allow_html=True)
 
 elif page == "📊 Prompt 3: Preprocess Visual":
