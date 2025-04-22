@@ -131,16 +131,21 @@ prompt_context = """
 • Thoroughly analyze the streamlit application and its ingested metadata below and help me with the edits I require:
 
 
+
 {Paste Code Here} 
+
 
 
 {Paste .info Here}
 
 
+
 • Make these edits below, but do not modify, drop or add anything else other than what I ask for here: 
 
 
-{Paste Prompt Here}"""
+
+{Paste Prompt Here}
+"""
 
 # Define the initial dashboard code
 initial_dashboard_code = '''import pandas as pd
