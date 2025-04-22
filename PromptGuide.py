@@ -574,7 +574,7 @@ elif page == "📋 Prompt 1: Data Explorer":
     <div class="prompt-title">**Prompt to Copy:**</div>
     <div class="prompt-block">
     
-Create a Streamlit analytics dashboard built in a modular fashion where additional functionality can be added one by one. Only create the functions and tables I request for below, do not create anything else.
+• Create a Streamlit analytics dashboard built in a modular fashion where additional functionality can be added one by one. Only create the functions and tables I request for below, do not create anything else.
 
 
 • Build the following modular functions:
