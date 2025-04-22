@@ -548,7 +548,7 @@ elif page == "📋 Prompt 1: Data Explorer":
     st.title("Prompt 1: Data Explorer & App Foundation")
     
     with st.expander("PROMPT CONTEXT", expanded=False):
-        st.markdown(prompt_context, language="markdown")
+        st.markdown(prompt_context)
     
     st.markdown("""
     Your initial prompt should establish robust data exploration capabilities. By implementing an effective file explorer, you'll be able to:
